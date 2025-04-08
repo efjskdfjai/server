@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSP 기초</title>
+</head>
+
+<body>
+  <h1>EL / JSTL</h1>
+
+  <!-- 클라이언트가 서버로 요청을 하는 방법
+    1) form 제출 (GET/POST)
+    2) a 태그 (GET)
+    3) JS - location.href = "주소"; (GET)
+    4) JS - Ajax 비동기 요청 (GET / POST / PUT / DELETE)
+    
+  -->
+
+  <a href="/el_jstl">EL / JSTL 사용해보기</a>
+
+<hr><hr>
+
+<h1>회원가입</h1>
+
+<form action="/signUp" method="post">
+<p>아이디</p>
+<input type="text" name="inputId"> <br>
+
+<p>비밀번호</p>
+<input type="password" name="inputPw"> <br>
+
+<p>비밀번호 확인</p>
+<input type="password" name="inputPwCheck"> <br>
+
+<p>이름</p>
+<input type="text" name="inputName"> <br>
+
+<p>나이</p>
+<input type="text" name="inputName"> <br>
+
+<button type="submit">회원 가입</button>
+</form>
+
+
+</body>
+
+</html>
