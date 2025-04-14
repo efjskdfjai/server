@@ -1,18 +1,16 @@
 package edu.kh.todoList.model.dao;
 
+import static edu.kh.todoList.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Properties;
 
-import static edu.kh.todoList.common.JDBCTemplate.*;
 import edu.kh.todoList.model.dto.Todo;
 
 public class TodoListDAOImpl implements TodoListDAO{
@@ -190,6 +188,59 @@ public class TodoListDAOImpl implements TodoListDAO{
 			
 			result = pstmt.executeUpdate();
 			
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int todoDelete(Connection conn, int todoNo) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("todoDelete");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, todoNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int todoUpdate(Connection conn, int todoNo) throws Exception {
+		
+		String sql = prop.getProperty("todoUpdate");
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		return 0;
+	}
+
+	@Override
+	public int todoUpdate(Connection conn, int todoNo, String title, String detail) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("todoUpdate");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, detail);
+			pstmt.setInt(3, todoNo);
+			
+			result = pstmt.executeUpdate();
 			
 		} finally {
 			close(pstmt);
